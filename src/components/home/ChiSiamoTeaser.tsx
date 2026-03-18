@@ -15,7 +15,7 @@ export default function ChiSiamoTeaser() {
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
             La Farmacia Resta rappresenta da decenni un punto di riferimento per
             la comunità di Opera, intrecciando la propria storia con quella del
-            territorio e delle famiglie che lo abitano. Fondata con l'intento di
+            territorio e delle famiglie che lo abitano. Fondata con l&apos;intento di
             offrire un servizio sanitario affidabile e vicino ai cittadini, la
             farmacia ha saputo evolversi nel corso degli anni mantenendo intatti i
             valori che ne hanno guidato i primi passi: <strong className="text-green-600">professionalità, ascolto e
