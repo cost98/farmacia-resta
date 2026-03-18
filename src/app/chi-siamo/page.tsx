@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     'La storia della Farmacia Resta: dal 1970 al servizio della comunità di Opera con professionalità, ascolto e dedizione al benessere della persona.',
 };
 
+import Link from 'next/link';
+
 export default function ChiSiamoPage() {
   const valori = [
     {
@@ -64,7 +66,7 @@ export default function ChiSiamoPage() {
               La Farmacia Resta rappresenta da decenni un punto di riferimento
               per la comunità di Opera, intrecciando la propria storia con
               quella del territorio e delle famiglie che lo abitano. Fondata con
-              l'intento di offrire un servizio sanitario affidabile e vicino ai
+              l&apos;intento di offrire un servizio sanitario affidabile e vicino ai
               cittadini, la farmacia ha saputo evolversi nel corso degli anni
               mantenendo intatti i valori che ne hanno guidato i primi passi:{' '}
               <strong>professionalità, ascolto e dedizione</strong> al benessere
@@ -74,14 +76,14 @@ export default function ChiSiamoPage() {
             <p>
               Nel tempo, la Farmacia Resta ha ampliato i propri servizi. Dalla
               dispensazione tradizionale dei medicinali si è sviluppata verso
-              un'offerta sempre più completa, introducendo{' '}
+              un&apos;offerta sempre più completa, introducendo{' '}
               <strong>reparti specializzati</strong>,{' '}
               <strong>consulenze personalizzate</strong> e{' '}
               <strong>tecnologie innovative</strong> per la salute.
             </p>
 
             <p>
-              L'attenzione al rapporto umano, da sempre elemento distintivo
+              L&apos;attenzione al rapporto umano, da sempre elemento distintivo
               della farmacia, si è mantenuta centrale nonostante i cambiamenti.
               Generazioni di cittadini hanno trovato nella Farmacia Resta un
               luogo affidabile, dove essere accolti, ascoltati e seguiti con
@@ -145,18 +147,18 @@ export default function ChiSiamoPage() {
             della tua salute
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/contatti"
               className="inline-flex items-center justify-center bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium"
             >
               Contattaci
-            </a>
-            <a
+            </Link>
+            <Link
               href="/servizi"
               className="inline-flex items-center justify-center border-2 border-green-600 text-green-600 px-8 py-3 rounded-lg hover:bg-green-50 transition-colors font-medium"
             >
               Scopri i servizi
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,18 @@
 import Link from 'next/link';
+import {
+  Activity,
+  Ear,
+  FlaskConical,
+  Heart,
+  Package,
+  Scissors,
+  ShoppingBag,
+  Sparkles,
+  Stethoscope,
+  Syringe,
+  TestTube2,
+  type LucideIcon,
+} from 'lucide-react';
 import { Servizio } from '@/types';
 import Card from '@/components/ui/Card';
 import { ArrowRight } from 'lucide-react';
@@ -7,15 +21,38 @@ interface ServiceCardProps {
   servizio: Servizio;
 }
 
+const categoryIcons: Record<string, LucideIcon> = {
+  'Diagnostica Cardiologica': Heart,
+  'Diagnostica': Activity,
+  'Laboratorio': FlaskConical,
+  'Test Diagnostici': TestTube2,
+  'Servizi Ambulatoriali': Stethoscope,
+  'Dermocosmesi': Sparkles,
+  'Noleggio': Package,
+  'Servizi': ShoppingBag,
+  'Vaccinazioni': Syringe,
+};
+
+const slugIcons: Record<string, LucideIcon> = {
+  'foratura-lobi': Scissors,
+  'controllo-udito': Ear,
+};
+
 export default function ServiceCard({ servizio }: ServiceCardProps) {
+  const Icon = slugIcons[servizio.slug] ?? categoryIcons[servizio.categoria] ?? Stethoscope;
+
   return (
     <Link href={`/servizi/${servizio.slug}`}>
       <Card className="group">
         <div className="p-6">
-          {/* Placeholder immagine con gradiente più ricco */}
+          {/* Icon area */}
           <div className="w-full h-48 bg-gradient-to-br from-green-50 via-emerald-100 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
             <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10"></div>
-            <span className="text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300">🏥</span>
+            <Icon
+              size={72}
+              className="relative z-10 text-green-600 group-hover:scale-110 transition-transform duration-300"
+              strokeWidth={1.5}
+            />
           </div>
 
           <div className="mb-3">

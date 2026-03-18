@@ -121,7 +121,7 @@ export default function ContactForm() {
           className="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
         />
         <label htmlFor="privacy" className="ml-3 text-sm text-gray-700">
-          Accetto l'
+          Accetto l&apos;
           <a href="/privacy" className="text-green-600 hover:text-green-700 underline">
             informativa sulla privacy
           </a>{' '}
@@ -147,7 +147,7 @@ export default function ContactForm() {
         <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
           <XCircle size={24} />
           <div>
-            <p className="font-semibold">Errore durante l'invio</p>
+            <p className="font-semibold">Errore durante l&apos;invio</p>
             <p className="text-sm">
               Si è verificato un errore. Riprova o contattaci telefonicamente.
             </p>
