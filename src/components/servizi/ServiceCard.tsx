@@ -1,10 +1,52 @@
 import Link from 'next/link';
 import { Servizio } from '@/types';
 import Card from '@/components/ui/Card';
-import { ArrowRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Activity,
+  FlaskConical,
+  TestTube,
+  Scissors,
+  Ear,
+  Sparkles,
+  Package,
+  ShoppingBag,
+  Syringe,
+  Stethoscope,
+} from 'lucide-react';
 
 interface ServiceCardProps {
   servizio: Servizio;
+}
+
+function getCategoryIcon(categoria: string) {
+  const iconProps = {
+    size: 48,
+    className: 'text-green-600 relative z-10 group-hover:scale-110 transition-transform duration-300',
+  };
+
+  switch (categoria) {
+    case 'Diagnostica Cardiologica':
+      return <Activity {...iconProps} />;
+    case 'Diagnostica':
+      return <Stethoscope {...iconProps} />;
+    case 'Laboratorio':
+      return <FlaskConical {...iconProps} />;
+    case 'Test Diagnostici':
+      return <TestTube {...iconProps} />;
+    case 'Servizi Ambulatoriali':
+      return <Scissors {...iconProps} />;
+    case 'Dermocosmesi':
+      return <Sparkles {...iconProps} />;
+    case 'Noleggio':
+      return <Package {...iconProps} />;
+    case 'Servizi':
+      return <ShoppingBag {...iconProps} />;
+    case 'Vaccinazioni':
+      return <Syringe {...iconProps} />;
+    default:
+      return <Ear {...iconProps} />;
+  }
 }
 
 export default function ServiceCard({ servizio }: ServiceCardProps) {
@@ -12,10 +54,10 @@ export default function ServiceCard({ servizio }: ServiceCardProps) {
     <Link href={`/servizi/${servizio.slug}`}>
       <Card className="group">
         <div className="p-6">
-          {/* Placeholder immagine con gradiente più ricco */}
+          {/* Category icon with gradient background */}
           <div className="w-full h-48 bg-gradient-to-br from-green-50 via-emerald-100 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
             <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10"></div>
-            <span className="text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300">🏥</span>
+            {getCategoryIcon(servizio.categoria)}
           </div>
 
           <div className="mb-3">
@@ -52,3 +94,4 @@ export default function ServiceCard({ servizio }: ServiceCardProps) {
     </Link>
   );
 }
+

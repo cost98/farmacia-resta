@@ -24,16 +24,59 @@ export const metadata: Metadata = {
   ],
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Pharmacy",
+  name: "Farmacia Resta",
+  image: "https://farmaciaresta.it/images/logo_scritta.jpeg",
+  url: "https://farmaciaresta.it",
+  telephone: "+390257604980",
+  email: "info@anticafarmaciadiopera.it",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Via Resistenza 14/B",
+    addressLocality: "Opera",
+    addressRegion: "MI",
+    postalCode: "20073",
+    addressCountry: "IT",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 45.3733,
+    longitude: 9.2067,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday"],
+      opens: "14:30",
+      closes: "19:30",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:30",
+      closes: "19:30",
+    },
+  ],
+  vatID: "06778670965",
+  foundingDate: "1970",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const disableAllLinks = true;
-
   return (
     <html lang="it">
-      <body className={`${inter.variable} font-sans antialiased ${disableAllLinks ? "links-disabled" : ""}`.trim()}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={`${inter.variable} font-sans antialiased`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
