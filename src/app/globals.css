@@ -12,6 +12,32 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  /* Brand green palette basata su #00746b */
+  --color-green-50: #edfaf9;
+  --color-green-100: #cbf0eb;
+  --color-green-200: #96ddd6;
+  --color-green-300: #53c4bb;
+  --color-green-400: #1da99f;
+  --color-green-500: #008d83;
+  --color-green-600: #00746b;
+  --color-green-700: #005c55;
+  --color-green-800: #003d38;
+  --color-green-900: #002520;
+  --color-green-950: #00100e;
+
+  /* Emerald allineato alla stessa tonalità */
+  --color-emerald-50: #edfaf9;
+  --color-emerald-100: #cbf0eb;
+  --color-emerald-200: #96ddd6;
+  --color-emerald-300: #53c4bb;
+  --color-emerald-400: #1da99f;
+  --color-emerald-500: #008d83;
+  --color-emerald-600: #00746b;
+  --color-emerald-700: #005c55;
+  --color-emerald-800: #003d38;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

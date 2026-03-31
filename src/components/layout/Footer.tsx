@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
+import { Phone, Mail, Instagram, Facebook } from 'lucide-react';
 import { contatti, social } from '@/lib/data/contatti';
 
 export default function Footer() {
@@ -10,19 +10,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Colonna 1: Info Farmacia */}
           <div>
-            <div className="relative w-48 h-16 mb-4">
+            <div className="relative w-36 h-12 mb-4">
               <Image
-                src="/images/logo_scritta.jpeg"
+                src="/images/logo_scritta_transparent.png"
                 alt="Farmacia Resta"
                 fill
                 className="object-contain object-left brightness-0 invert"
               />
             </div>
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <MapPin size={20} className="text-green-400 flex-shrink-0 mt-1" />
-                <p className="text-gray-300">{contatti.indirizzo}</p>
-              </div>
+              <p className="text-gray-300">{contatti.indirizzo}</p>
               <p className="text-gray-400 text-sm">P.IVA: {contatti.piva}</p>
             </div>
           </div>

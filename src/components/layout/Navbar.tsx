@@ -22,7 +22,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
-            <div className="relative w-52 h-16 group-hover:scale-105 transition-transform">
+            <div className="relative w-64 h-20 group-hover:scale-105 transition-transform">
               <Image
                 src="/images/logo_scritta.jpeg"
                 alt="Farmacia Resta"

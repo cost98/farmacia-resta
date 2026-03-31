@@ -29,11 +29,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const disableAllLinks = true;
-
   return (
     <html lang="it">
-      <body className={`${inter.variable} font-sans antialiased ${disableAllLinks ? "links-disabled" : ""}`.trim()}>
+      <body className={`${inter.variable} font-sans antialiased`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

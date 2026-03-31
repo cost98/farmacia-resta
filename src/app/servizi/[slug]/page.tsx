@@ -5,6 +5,7 @@ import { servizi } from '@/lib/data/servizi';
 import { ChevronRight, Clock, Calendar, ArrowLeft, Phone } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import PageHeader from '@/components/ui/PageHeader';
 import { contatti } from '@/lib/data/contatti';
 
 interface Props {
@@ -42,8 +43,13 @@ export default async function ServizioPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50">
+      <PageHeader
+        title={servizio.titolo}
+        subtitle={servizio.descrizioneBreve}
+        eyebrow={servizio.categoria}
+      />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
           <Link href="/" className="hover:text-green-600">
@@ -60,22 +66,11 @@ export default async function ServizioPage({ params }: Props) {
         {/* Back Button */}
         <Link
           href="/servizi"
-          className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium mb-6"
+          className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium mb-8"
         >
           <ArrowLeft size={20} />
           <span>Torna ai servizi</span>
         </Link>
-
-        {/* Header */}
-        <div className="mb-8">
-          <span className="inline-block px-4 py-2 bg-green-100 text-green-700 text-sm font-semibold rounded-full mb-4">
-            {servizio.categoria}
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {servizio.titolo}
-          </h1>
-          <p className="text-xl text-gray-700">{servizio.descrizioneBreve}</p>
-        </div>
 
         {/* Image Placeholder */}
         <div className="w-full h-96 bg-gradient-to-br from-green-100 to-green-200 rounded-xl mb-12 flex items-center justify-center">

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import PageHeader from '@/components/ui/PageHeader';
 import { contatti, orari } from '@/lib/data/contatti';
 import Card from '@/components/ui/Card';
 import ContactForm from '@/components/forms/ContactForm';
@@ -12,18 +13,14 @@ export const metadata: Metadata = {
 
 export default function ContattiPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Contattaci
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Siamo qui per aiutarti. Contattaci per informazioni, prenotazioni o
-            qualsiasi esigenza.
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-50">
+      <PageHeader
+        title="Contattaci"
+        subtitle="Siamo qui per aiutarti. Contattaci per informazioni, prenotazioni o qualsiasi esigenza."
+        eyebrow="Farmacia Resta"
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Info Cards */}

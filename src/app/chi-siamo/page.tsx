@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Heart, Users, Award, Clock } from 'lucide-react';
 import Card from '@/components/ui/Card';
+import PageHeader from '@/components/ui/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Chi Siamo | Farmacia Resta - Opera (MI)',
@@ -46,15 +47,11 @@ export default function ChiSiamoPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-600 to-green-800 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Chi Siamo</h1>
-          <p className="text-xl text-green-100 leading-relaxed">
-            La storia della Farmacia Resta è la storia della nostra comunità
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Chi Siamo"
+        subtitle="La storia della Farmacia Resta è la storia della nostra comunità"
+        eyebrow="Dal 1970 · Opera (MI)"
+      />
 
       {/* Story Section */}
       <section className="py-16 bg-white">
