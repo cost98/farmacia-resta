@@ -27,7 +27,7 @@ export default function MapSection() {
             src={mapEmbedSrc}
             width="100%"
             height="450"
-            className="border-0"
+            style={{ border: 0, pointerEvents: 'auto' }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

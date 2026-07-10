@@ -13,7 +13,7 @@ export const servizi: Servizio[] = [
     preparazione: 'Non è necessaria una preparazione. È anzi consigliabile svolgere le normali attività quotidiane anche durante la rilevazione dell\'attività cardiaca per poter avere un\'idea più precisa di come il cuore risponda ai diversi stimoli a cui è sottoposto. Verrà consigliata la compilazione di un diario giornaliero che riporti sensazioni e attività svolte, che verrà inviato al medico refertatore.',
     durata: '24/48 ore',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/holter-cardiaco.jpg',
+    immagine: '/images/servizi/holter_cardiaco.png',
   },
   {
     id: '2',
@@ -27,7 +27,7 @@ export const servizi: Servizio[] = [
     preparazione: 'Non è necessaria una preparazione. È anzi consigliabile svolgere le normali attività quotidiane e solo durante la fase di misurazione fermarsi per permettere al misuratore di fare la rilevazione. Verrà consigliata la compilazione di un diario giornaliero che riporti sensazioni e attività svolte, da consegnare al medico insieme al tracciato.',
     durata: '24-48 ore (max 5 giorni)',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/holter-pressorio.jpg',
+    immagine: '/images/servizi/holter_pressorio.png',
   },
   {
     id: '3',
@@ -40,7 +40,7 @@ export const servizi: Servizio[] = [
     comeSiEsegue: 'È una tecnica non invasiva e indolore che prevede l\'applicazione di alcuni elettrodi sul torace, collegati a un tablet che registra e trasmette il tracciato al centro di refertazione. Il cardiologo analizza il tracciato, lo valida e invia il referto alla farmacia, dove il paziente potrà ritirarlo.',
     durata: '10-15 minuti',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/elettrocardiogramma.jpg',
+    immagine: '/images/servizi/elettrocardiogramma.png',
   },
   {
     id: '4',
@@ -51,7 +51,7 @@ export const servizi: Servizio[] = [
     descrizioneCompleta: 'Controllo dei parametri della pressione diastolica e sistolica con strumentazione professionale.',
     durata: '5 minuti',
     prenotazioneConsigliata: false,
-    immagine: '/images/servizi/misurazione-pressione.jpg',
+    immagine: '/images/servizi/misura_pressione.png',
   },
   {
     id: '5',
@@ -61,7 +61,7 @@ export const servizi: Servizio[] = [
     descrizioneBreve: 'Preparazioni personalizzate nel nostro laboratorio.',
     descrizioneCompleta: 'Nel nostro laboratorio prepariamo prodotti officinali quali: MINOXIDIL 5%, MINOXIDIL 3%, VITAMINA C polvere, ALCOOL BORICO 2%, ALCOOL BORICO 3%. Per preparazione di altri prodotti sia officinali che magistrali, con ricetta medica ripetibile o non ripetibile, contattaci: ti daremo indicazioni per quanto riguarda tempistiche e costo.',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/preparazioni-galeniche.jpg',
+    immagine: '/images/servizi/preparazioni_galeniche.png',
   },
   {
     id: '6',
@@ -72,7 +72,7 @@ export const servizi: Servizio[] = [
     descrizioneCompleta: 'Il test rapido antigenico viene eseguito su un campione prelevato tramite tampone naso-faringeo. Con un bastoncino cotonato che viene inserito in ciascuna narice del paziente, l\'operatore preleva il materiale biologico che riveste la mucosa del rinofaringe (la parte superiore del tratto respiratorio), per ricercare alcune componenti proteiche del virus, definite antigeni.',
     durata: '15 minuti',
     prenotazioneConsigliata: false,
-    immagine: '/images/servizi/tampone-covid.jpg',
+    immagine: '/images/servizi/tampone_covid.png',
   },
   {
     id: '7',
@@ -83,7 +83,7 @@ export const servizi: Servizio[] = [
     descrizioneCompleta: 'Il mal di gola nei bambini può essere di origine virale o batterica e, purtroppo, la sola visita non è sufficiente per la diagnosi. In questo caso, occorre effettuare il test orofaringeo per la rilevazione dello Streptococco, indispensabile per distinguere se è necessaria la terapia antibiotica. Da oggi puoi effettuare in farmacia il tampone orofaringeo per lo Streptococco con esito in pochi minuti.',
     durata: '10 minuti',
     prenotazioneConsigliata: false,
-    immagine: '/images/servizi/tampone-streptococco.jpg',
+    immagine: '/images/servizi/tampone_streptococco.png',
   },
   {
     id: '8',
@@ -95,7 +95,7 @@ export const servizi: Servizio[] = [
     preparazione: 'I minori di 18 anni devono essere accompagnati da un genitore. Prima della foratura è necessario compilare e firmare un modulo per il consenso e registrazione degli interventi.',
     durata: '15 minuti',
     prenotazioneConsigliata: false,
-    immagine: '/images/servizi/foratura-lobi.jpg',
+    immagine: '/images/servizi/foratura_lobi.png',
   },
   {
     id: '9',
@@ -106,7 +106,7 @@ export const servizi: Servizio[] = [
     descrizioneCompleta: 'L\'esame è fondamentale e rappresenta il primo passo per verificare, in pochi minuti, le reali condizioni dell\'udito. Grazie a questo semplicissimo test è possibile quindi effettuare un bilancio del disturbo uditivo per poi essere, eventualmente, seguiti nella scelta della soluzione più adeguata. Questo test viene eseguito con cadenza mensile.',
     durata: '20 minuti',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/controllo-udito.jpg',
+    immagine: '/images/servizi/controllo_udito.png',
   },
   {
     id: '10',
@@ -118,7 +118,7 @@ export const servizi: Servizio[] = [
     preparazione: 'È preferibile presentarsi con la pelle detersa e priva di trucco.',
     durata: '30 minuti',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/analisi-pelle.jpg',
+    immagine: '/images/servizi/analisi_pelle.png',
   },
   {
     id: '11',
@@ -130,7 +130,7 @@ export const servizi: Servizio[] = [
     preparazione: 'È preferibile presentarsi con capelli lavati e senza lacche o gel. Trattamenti decoloranti non alterano l\'esame.',
     durata: '30 minuti',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/analisi-capello.jpg',
+    immagine: '/images/servizi/analisi_capelli.png',
   },
   {
     id: '12',
@@ -142,7 +142,7 @@ export const servizi: Servizio[] = [
     comeSiEsegue: 'Grazie all\'utilizzo di un dermatoscopio digitale e di una piattaforma dedicata, in farmacia è possibile acquisire e inviare direttamente ai dermatologi le informazioni necessarie per l\'analisi approfondita della pelle e/o del cuoio capelluto. L\'esito, refertato da un dermatologo o tricologo, è disponibile per il ritiro presso la farmacia entro 24h.',
     durata: '30 minuti + referto in 24h',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/teledermatologia.jpg',
+    immagine: '/images/servizi/controllo_teledemartologia.png',
   },
   {
     id: '13',
@@ -163,7 +163,7 @@ export const servizi: Servizio[] = [
     descrizioneBreve: 'Stampelle, carrozzella, deambulatore e altro.',
     descrizioneCompleta: 'Servizio di noleggio elettromedicali: STAMPELLE, CARROZZELLA, DEAMBULATORE. Contattaci se necessiti di altro.',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/elettromedicali.jpg',
+    immagine: '/images/servizi/noleggio_elettromedicali.png',
   },
   {
     id: '15',
@@ -193,7 +193,7 @@ export const servizi: Servizio[] = [
     descrizioneBreve: 'Ordina e ritira prodotti senza glutine, anche mutuabili.',
     descrizioneCompleta: 'Ordina i tuoi prodotti senza glutine direttamente da noi o su https://www.farmacieglutenfree.it e ritira direttamente presso la nostra farmacia. In questo modo potrai sfruttare i buoni regionali forniti dall\'AUSL.',
     prenotazioneConsigliata: false,
-    immagine: '/images/servizi/senza-glutine.jpg',
+    immagine: '/images/servizi/prodotti_senza_glutine.png',
   },
   {
     id: '18',
@@ -204,6 +204,6 @@ export const servizi: Servizio[] = [
     descrizioneCompleta: 'VACCINAZIONE ANTINFLUENZALE per maggiorenni che abbiano già ricevuto una vaccinazione analoga in passato. Gratuita per residenti in regione. VACCINAZIONE ANTI COVID per maggiori di 12 anni che abbiano già ricevuto una vaccinazione analoga in passato. Solo per i residenti in regione. VACCINAZIONE ANTIPNEUMOCOCCICA gratuita per over 65 che non abbiano mai ricevuto il vaccino o a cui è stato somministrato un vaccino antecedente al PREVENAR 20.',
     preparazione: 'È necessaria, previa vaccinazione, la compilazione di un modulo che attesta l\'idoneità alla somministrazione.',
     prenotazioneConsigliata: true,
-    immagine: '/images/servizi/vaccinazioni.jpg',
+    immagine: '/images/servizi/vaccino.png',
   },
 ];

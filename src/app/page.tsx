@@ -10,10 +10,10 @@ export default function Home() {
     <>
       <HeroSection />
       <ChiSiamoTeaser />
-      <Recensioni />
       <CtaBoxes />
-      <InstagramFeed />
       <MapSection />
+      <Recensioni />
+      <InstagramFeed />
     </>
   );
 }

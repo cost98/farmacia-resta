@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { servizi } from '@/lib/data/servizi';
-import { ChevronRight, Clock, Calendar, ArrowLeft, Phone } from 'lucide-react';
+import { Clock, Calendar, ArrowLeft, Phone } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import PageHeader from '@/components/ui/PageHeader';
+import SectionIntro from '@/components/ui/SectionIntro';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 import { contatti } from '@/lib/data/contatti';
 
 interface Props {
@@ -44,24 +46,27 @@ export default async function ServizioPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <PageHeader
-        title={servizio.titolo}
-        subtitle={servizio.descrizioneBreve}
-        eyebrow={servizio.categoria}
-      />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
-          <Link href="/" className="hover:text-green-600">
-            Home
-          </Link>
-          <ChevronRight size={16} />
-          <Link href="/servizi" className="hover:text-green-600">
-            Servizi
-          </Link>
-          <ChevronRight size={16} />
-          <span className="text-gray-900 font-medium">{servizio.titolo}</span>
-        </nav>
+      {/* Header Section */}
+      <section className="pt-16 pb-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <SectionIntro
+              eyebrow={servizio.categoria}
+              title={servizio.titolo}
+              highlight={servizio.titolo.split(' ').pop() || servizio.titolo}
+              handwritten
+              subtitle={servizio.descrizioneBreve}
+            />
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Servizi', href: '/servizi' },
+          { label: servizio.titolo }
+        ]} />
 
         {/* Back Button */}
         <Link
@@ -72,10 +77,23 @@ export default async function ServizioPage({ params }: Props) {
           <span>Torna ai servizi</span>
         </Link>
 
-        {/* Image Placeholder */}
-        <div className="w-full h-96 bg-gradient-to-br from-green-100 to-green-200 rounded-xl mb-12 flex items-center justify-center">
-          <span className="text-9xl">🏥</span>
-        </div>
+        {/* Immagine Servizio */}
+        {servizio.immagine ? (
+          <div className="w-full h-96 rounded-xl mb-12 relative overflow-hidden">
+            <Image
+              src={servizio.immagine}
+              alt={servizio.titolo}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              priority
+            />
+          </div>
+        ) : (
+          <div className="w-full h-96 bg-linear-to-br from-green-100 to-green-200 rounded-xl mb-12 flex items-center justify-center">
+            <span className="text-9xl">🏥</span>
+          </div>
+        )}
 
         {/* Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

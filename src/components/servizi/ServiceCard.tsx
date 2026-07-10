@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Servizio } from '@/types';
 import Card from '@/components/ui/Card';
 import { ArrowRight } from 'lucide-react';
@@ -12,14 +13,26 @@ export default function ServiceCard({ servizio }: ServiceCardProps) {
     <Link href={`/servizi/${servizio.slug}`} className="h-full">
       <Card className="group h-full">
         <div className="p-6 flex flex-col h-full">
-          {/* Placeholder immagine con gradiente più ricco */}
-          <div className="w-full h-48 bg-gradient-to-br from-green-50 via-emerald-100 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10"></div>
-            <span className="text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300">🏥</span>
+          {/* Immagine del servizio */}
+          <div className="w-full h-64 md:h-56 rounded-xl mb-4 relative overflow-hidden">
+            {servizio.immagine ? (
+              <Image
+                src={servizio.immagine}
+                alt={servizio.titolo}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            ) : (
+              <div className="w-full h-full bg-linear-to-br from-green-50 via-emerald-100 to-teal-100 flex items-center justify-center">
+                <div className="absolute inset-0 bg-linear-to-br from-green-500/10 to-blue-500/10"></div>
+                <span className="text-6xl relative z-10 group-hover:scale-110 transition-transform duration-300">🏥</span>
+              </div>
+            )}
           </div>
 
           <div className="mb-3">
-            <span className="inline-block px-3 py-1.5 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-xs font-semibold rounded-full border border-green-100">
+            <span className="inline-block px-3 py-1.5 bg-linear-to-r from-green-50 to-emerald-50 text-green-700 text-xs font-semibold rounded-full border border-green-100">
               {servizio.categoria}
             </span>
           </div>
@@ -28,7 +41,7 @@ export default function ServiceCard({ servizio }: ServiceCardProps) {
             {servizio.titolo}
           </h3>
 
-          <p className="text-gray-600 mb-4 line-clamp-2 leading-relaxed flex-grow">
+          <p className="text-gray-600 mb-4 line-clamp-2 leading-relaxed grow">
             {servizio.descrizioneBreve}
           </p>
 

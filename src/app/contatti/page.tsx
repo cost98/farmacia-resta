@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import PageHeader from '@/components/ui/PageHeader';
+import SectionIntro from '@/components/ui/SectionIntro';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 import { contatti, orari } from '@/lib/data/contatti';
 import Card from '@/components/ui/Card';
 import ContactForm from '@/components/forms/ContactForm';
@@ -14,12 +15,26 @@ export const metadata: Metadata = {
 export default function ContattiPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <PageHeader
-        title="Contattaci"
-        subtitle="Siamo qui per aiutarti. Contattaci per informazioni, prenotazioni o qualsiasi esigenza."
-        eyebrow="Farmacia Resta"
-      />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Header Section */}
+      <section className="pt-16 pb-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <SectionIntro
+              eyebrow="Farmacia Resta"
+              title="Contattaci"
+              highlight="Contattaci"
+              handwritten
+              subtitle="Siamo qui per aiutarti per informazioni, prenotazioni o qualsiasi esigenza."
+            />
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Contatti' }
+        ]} />
 
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

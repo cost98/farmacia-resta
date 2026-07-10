@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import { Heart, Users, Award, Clock } from 'lucide-react';
 import Card from '@/components/ui/Card';
-import PageHeader from '@/components/ui/PageHeader';
+import SectionIntro from '@/components/ui/SectionIntro';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 
 export const metadata: Metadata = {
   title: 'Chi Siamo | Farmacia Resta - Opera (MI)',
@@ -47,15 +48,29 @@ export default function ChiSiamoPage() {
 
   return (
     <div className="min-h-screen">
-      <PageHeader
-        title="Chi Siamo"
-        subtitle="La storia della Farmacia Resta è la storia della nostra comunità"
-        eyebrow="Dal 1970 · Opera (MI)"
-      />
+      {/* Header Section */}
+      <section className="pt-16 pb-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <SectionIntro
+              eyebrow="Dal 1970 · Opera (MI)"
+              title="Chi Siamo"
+              highlight="Siamo"
+              handwritten
+              subtitle="La storia della Farmacia Resta è la storia della nostra comunità"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Story Section */}
-      <section className="py-16 bg-white">
+      <section className="pb-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: 'Chi Siamo' }
+          ]} />
+
           <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
             <p>
               La Farmacia Resta rappresenta da decenni un punto di riferimento
