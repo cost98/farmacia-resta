@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ArrowUpRight, Instagram, ShoppingBag, Stethoscope } from 'lucide-react';
-import Card from '@/components/ui/Card';
 import SectionIntro from '@/components/ui/SectionIntro';
 import { social } from '@/lib/data/contatti';
 
@@ -11,9 +10,6 @@ type CtaBox = {
   icon: React.ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
   href: string;
   ctaLabel: string;
-  color: string;
-  bgColor: string;
-  ringColor: string;
   external?: boolean;
 };
 
@@ -25,9 +21,6 @@ const ctaBoxes: CtaBox[] = [
     icon: Stethoscope,
     href: '/servizi',
     ctaLabel: 'Prenota ora',
-    color: 'text-green-700',
-    bgColor: 'bg-green-50',
-    ringColor: 'ring-green-200',
   },
   {
     id: 'talk-pharmacist',
@@ -36,9 +29,6 @@ const ctaBoxes: CtaBox[] = [
     icon: ShoppingBag,
     href: '/contatti',
     ctaLabel: 'Contattaci',
-    color: 'text-green-700',
-    bgColor: 'bg-emerald-50',
-    ringColor: 'ring-emerald-200',
   },
   {
     id: 'instagram-offers',
@@ -48,9 +38,6 @@ const ctaBoxes: CtaBox[] = [
     href: social.instagram,
     external: true,
     ctaLabel: 'Seguici su Instagram',
-    color: 'text-green-700',
-    bgColor: 'bg-green-50',
-    ringColor: 'ring-green-200',
   },
 ];
 
@@ -70,29 +57,38 @@ export default function CtaBoxes() {
           subtitle="Tre percorsi semplici, progettati per farti risparmiare tempo"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {ctaBoxes.map((box) => {
             const Icon = box.icon;
             const content = (
-              <Card hover className="group h-full border-green-100/80">
-                <div className="relative h-full overflow-hidden p-6">
-                  <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-linear-to-br from-green-100/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <div className="mb-5">
-                    <div className={`${box.bgColor} ring-1 ${box.ringColor} flex h-12 w-12 items-center justify-center rounded-xl shadow-sm`}>
-                      <Icon className={box.color} size={24} strokeWidth={2.4} />
+              <div className="group relative h-full overflow-hidden rounded-2xl bg-white border-2 border-gray-100 transition-all duration-300 hover:border-green-200 hover:shadow-xl hover:-translate-y-1">
+                {/* Background gradient decorativo */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-emerald-50/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                
+                <div className="relative p-8">
+                  {/* Icona grande */}
+                  <div className="mb-6 flex justify-center">
+                    <div className="relative">
+                      <div className="absolute inset-0 rounded-2xl bg-green-500/20 blur-xl transition-all duration-300 group-hover:bg-green-500/30" />
+                      <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-green-600 to-emerald-600 shadow-lg transition-transform duration-300 group-hover:scale-110">
+                        <Icon className="text-white" size={36} strokeWidth={2} />
+                      </div>
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-black leading-tight text-slate-900">{box.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{box.description}</p>
-
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-green-700 transition-all duration-300 group-hover:gap-3">
-                    {box.ctaLabel}
-                    <ArrowUpRight size={16} />
-                  </span>
+                  {/* Contenuto */}
+                  <div className="text-center">
+                    <h3 className="text-2xl font-black text-slate-900 mb-3">{box.title}</h3>
+                    <p className="text-base text-slate-600 leading-relaxed mb-6">{box.description}</p>
+                    
+                    {/* CTA */}
+                    <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-700 text-white font-bold text-sm transition-all duration-300 group-hover:bg-green-600 group-hover:gap-3 group-hover:shadow-lg">
+                      {box.ctaLabel}
+                      <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:rotate-45" />
+                    </div>
+                  </div>
                 </div>
-              </Card>
+              </div>
             );
 
             if (box.external) {

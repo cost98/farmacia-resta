@@ -34,10 +34,6 @@ export default function MapSection() {
             title="Mappa Farmacia Resta"
           />
         </div>
-
-        <div className="mt-8 text-center">
-          <DirectionsLink destination={contatti.indirizzo} className="text-lg" />
-        </div>
       </div>
     </section>
   );

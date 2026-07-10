@@ -1,7 +1,7 @@
 'use client';
 
-import { Clock3, ShieldCheck, HeartPulse, Phone, ChevronDown } from 'lucide-react';
-import { contatti, orari } from '@/lib/data/contatti';
+import { Clock3, ShieldCheck, HeartPulse, ChevronDown } from 'lucide-react';
+import { orari } from '@/lib/data/contatti';
 import { useEffect, useState } from 'react';
 
 const slides = [
@@ -55,21 +55,6 @@ export default function HeroSection() {
         />
       ))}
 
-      {/* Indicatori carosello (visibili solo con più slide) */}
-      {slides.length > 1 && (
-        <div className="absolute bottom-20 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                currentSlide === i ? 'w-6 bg-white' : 'w-1.5 bg-white/40'
-              }`}
-            />
-          ))}
-        </div>
-      )}
-
       {/* Overlay gradiente: verde solido a sinistra, sfuma a destra */}
       <div
         className="absolute inset-0"
@@ -113,13 +98,6 @@ export default function HeroSection() {
                 <Clock3 size={17} className="text-emerald-300" />
                 <span>Aperti da lunedì a sabato</span>
               </div>
-              <a
-                href={contatti.telefonoLink}
-                className="inline-flex items-center gap-2 transition-colors hover:text-white"
-              >
-                <Phone size={15} className="text-emerald-300" />
-                <span>{contatti.telefono}</span>
-              </a>
             </div>
           </div>
 

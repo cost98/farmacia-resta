@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Star } from 'lucide-react';
 import SectionIntro from '@/components/ui/SectionIntro';
-import DirectionsLink from '@/components/home/DirectionsLink';
 
 
 const recensioni = [
@@ -145,17 +143,6 @@ export default function Recensioni() {
               aria-label={`Vai alla recensione ${i + 1}`}
             />
           ))}
-        </div>
-
-        {/* Link recensione */}
-        <div className="text-center mt-12">
-          <DirectionsLink
-            href="https://www.google.com/maps/search/Farmacia+Resta+Opera"
-            label="Lascia una recensione"
-            icon={Star}
-            external
-            className="text-lg"
-          />
         </div>
       </div>
     </section>

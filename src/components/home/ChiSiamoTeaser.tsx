@@ -1,11 +1,10 @@
-import { ArrowRight } from 'lucide-react';
-import DirectionsLink from '@/components/home/DirectionsLink';
 import SectionIntro from '@/components/ui/SectionIntro';
+import FarmaciaCarousel from '@/components/home/FarmaciaCarousel';
 
 export default function ChiSiamoTeaser() {
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <SectionIntro
             eyebrow="Chi Siamo"
@@ -15,7 +14,7 @@ export default function ChiSiamoTeaser() {
             subtitle="Dal 1970 al servizio della comunita di Opera"
             className="mb-8"
           />
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-12 max-w-3xl mx-auto">
             La Farmacia Resta rappresenta da decenni un punto di riferimento per
             la comunità di Opera, intrecciando la propria storia con quella del
             territorio e delle famiglie che lo abitano. Fondata con l'intento di
@@ -24,12 +23,10 @@ export default function ChiSiamoTeaser() {
             valori che ne hanno guidato i primi passi: <strong className="text-green-600">professionalità, ascolto e
             dedizione</strong> al benessere della persona.
           </p>
-          <DirectionsLink
-            disabled
-            label="Scopri la nostra storia"
-            icon={ArrowRight}
-            className="text-lg"
-          />
+          
+          <div className="mb-12">
+            <FarmaciaCarousel />
+          </div>
         </div>
       </div>
     </section>

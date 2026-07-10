@@ -1,5 +1,6 @@
 import HeroSection from '@/components/home/HeroSection';
 import ChiSiamoTeaser from '@/components/home/ChiSiamoTeaser';
+import TeamSection from '@/components/home/TeamSection';
 import CtaBoxes from '@/components/home/CtaBoxes';
 import MapSection from '@/components/home/MapSection';
 import InstagramFeed from '@/components/home/InstagramFeed';
@@ -9,10 +10,11 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <ChiSiamoTeaser />
       <CtaBoxes />
-      <MapSection />
       <Recensioni />
+      <ChiSiamoTeaser />
+      <TeamSection />
+      <MapSection />
       <InstagramFeed />
     </>
   );

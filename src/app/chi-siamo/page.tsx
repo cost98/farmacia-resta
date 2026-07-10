@@ -3,6 +3,7 @@ import { Heart, Users, Award, Clock } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import SectionIntro from '@/components/ui/SectionIntro';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import FarmaciaCarousel from '@/components/home/FarmaciaCarousel';
 
 export const metadata: Metadata = {
   title: 'Chi Siamo | Farmacia Resta - Opera (MI)',
@@ -111,8 +112,23 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Photo Gallery Section */}
       <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              La Nostra Farmacia
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Uno spazio pensato per il vostro benessere
+            </p>
+          </div>
+          <FarmaciaCarousel />
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

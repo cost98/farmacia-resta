@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Instagram } from 'lucide-react';
 import type { InstagramPost } from '@/app/api/instagram/route';
+import { social } from '@/lib/data/contatti';
+import SectionIntro from '@/components/ui/SectionIntro';
 
 export default function InstagramFeed() {
   const [posts, setPosts] = useState<InstagramPost[]>([]);
@@ -24,10 +26,13 @@ export default function InstagramFeed() {
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Seguici su Instagram</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Aggiornamenti, consigli e novità dalla nostra farmacia</p>
-        </div>
+        <SectionIntro
+          eyebrow="Rimani aggiornato"
+          title="Le nostre novità"
+          highlight="novità"
+          handwritten
+          subtitle="Scopri consigli, promozioni e iniziative della farmacia direttamente dal nostro Instagram"
+        />
 
         {/* Grid */}
         {loading ? (
@@ -37,26 +42,22 @@ export default function InstagramFeed() {
             ))}
           </div>
         ) : isPlaceholder ? (
-          /* Stato senza token — invito a seguire */
-          <div className="flex flex-col items-center justify-center py-16 gap-6">
-            <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ backgroundColor: '#00746b' }}>
-              <Instagram className="w-10 h-10 text-white" />
+          /* Stato senza token — mostra placeholder visivi */
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="group relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center"
+                >
+                  {/* Icona Instagram al centro */}
+                  <Instagram className="w-12 h-12 text-gray-400" />
+                  {/* Overlay decorativo */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                </div>
+              ))}
             </div>
-            <div className="text-center">
-              <p className="text-gray-700 font-semibold text-lg">Siamo su Instagram!</p>
-              <p className="text-gray-500 mt-1">Seguici per aggiornamenti, consigli e offerte speciali</p>
-            </div>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium transition-opacity hover:opacity-90"
-              style={{ backgroundColor: '#00746b' }}
-            >
-              <Instagram className="w-4 h-4" />
-              Seguici su Instagram
-            </a>
-          </div>
+          </>
         ) : (
           <>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -81,19 +82,6 @@ export default function InstagramFeed() {
                   </div>
                 </a>
               ))}
-            </div>
-            {/* CTA */}
-            <div className="text-center mt-10">
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium transition-opacity hover:opacity-90"
-                style={{ backgroundColor: '#00746b' }}
-              >
-                <Instagram className="w-4 h-4" />
-                Vedi tutti i post
-              </a>
             </div>
           </>
         )}
