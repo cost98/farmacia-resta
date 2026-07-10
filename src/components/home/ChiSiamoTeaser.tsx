@@ -8,7 +8,10 @@ export default function ChiSiamoTeaser() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <SectionIntro
-            title="Chi Siamo"
+            eyebrow="Chi Siamo"
+            title="La nostra storia"
+            highlight="storia"
+            handwritten
             subtitle="Dal 1970 al servizio della comunita di Opera"
             className="mb-8"
           />

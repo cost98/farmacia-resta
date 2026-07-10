@@ -159,9 +159,17 @@ export default function HeroSection() {
                   className="flex items-center justify-between py-3 px-2"
                 >
                   <span className="text-sm font-semibold md:text-base text-white">
-                    {orario.giorno}{index === 0 && <span className="ml-1 text-xs font-normal text-white/50">(pomeriggio)</span>}
+                    {orario.giorno}
                   </span>
-                  <span className="text-sm font-medium text-emerald-100 md:text-base">{orario.orari}</span>
+                  <div className="text-sm font-medium text-emerald-100 md:text-base text-right">
+                    {orario.orari.includes('|') ? (
+                      orario.orari.split('|').map((fascia, i) => (
+                        <div key={i}>{fascia.trim()}</div>
+                      ))
+                    ) : (
+                      orario.orari
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { Star } from 'lucide-react';
+import SectionIntro from '@/components/ui/SectionIntro';
+import DirectionsLink from '@/components/home/DirectionsLink';
 
 
 const recensioni = [
@@ -61,80 +63,99 @@ export default function Recensioni() {
 
   return (
     <section className="py-20 px-4 bg-white">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-4xl mx-auto">
 
         {/* Intestazione */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Cosa dicono i clienti</h2>
-          <p className="text-lg text-gray-500">Dal 1970 al servizio della comunità di Opera</p>
+        <div className="text-center mb-16">
+          <SectionIntro
+            eyebrow="Recensioni"
+            title="Le vostre parole"
+            highlight="parole"
+            handwritten
+            subtitle="Testimonianze di chi ci ha scelto"
+          />
         </div>
 
-        {/* Card recensione */}
+        {/* Recensione */}
         <div
-          className="relative bg-gray-50 rounded-2xl px-10 py-10 shadow-sm transition-all duration-300"
-          style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(6px)' }}
+          className="transition-all duration-500"
+          style={{ opacity: visible ? 1 : 0, transform: visible ? 'scale(0.98)' : 'scale(1)' }}
         >
-          {/* Virgoletta aperta — angolo in alto a sinistra */}
-          <span
-            className="absolute top-4 left-6 select-none leading-none"
-            style={{ fontFamily: 'Georgia, serif', fontSize: '4rem', color: '#00746b', opacity: 0.2, lineHeight: 1 }}
-          >&ldquo;</span>
-
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-light italic text-center px-4">
-            {r.testo}
-          </p>
-
-          {/* Virgoletta chiusa — angolo in basso a destra */}
-          <span
-            className="absolute bottom-2 right-6 select-none leading-none"
-            style={{ fontFamily: 'Georgia, serif', fontSize: '4rem', color: '#00746b', opacity: 0.2, lineHeight: 1 }}
-          >&rdquo;</span>
-        </div>
-
-        {/* Autore */}
-        <div
-          className="flex items-center justify-center gap-3 mt-6 transition-all duration-300"
-          style={{ opacity: visible ? 1 : 0 }}
-        >
-          <div
-            className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
-            style={{ backgroundColor: '#00746b' }}
-          >
-            {r.nome.split(' ').map((p) => p[0]).join('').slice(0, 2).toUpperCase()}
+          {/* Stelle */}
+          <div className="flex items-center justify-center gap-1.5 mb-10">
+            {Array.from({ length: r.stelle }).map((_, i) => (
+              <svg
+                key={i}
+                className="w-5 h-5"
+                fill="#00746b"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
           </div>
-          <div>
-            <p className="font-semibold text-gray-900 text-sm">{r.nome}</p>
-            <p className="text-xs text-gray-400">{r.data}</p>
+
+          {/* Virgoletta decorativa */}
+          <div className="flex justify-center mb-6">
+            <svg className="w-16 h-16 text-green-700 opacity-20" fill="currentColor" viewBox="0 0 32 32">
+              <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z" />
+            </svg>
+          </div>
+
+          {/* Testo recensione */}
+          <blockquote className="relative max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl lg:text-3xl text-slate-700 leading-[1.6] text-center px-4 md:px-12" style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontStyle: 'italic', fontWeight: 400 }}>
+              {r.testo}
+            </p>
+          </blockquote>
+
+          {/* Separatore decorativo */}
+          <div className="flex items-center justify-center gap-2 my-10">
+            <div className="h-px w-12 bg-linear-to-r from-transparent to-green-300"></div>
+            <div className="h-1 w-1 rounded-full bg-green-600"></div>
+            <div className="h-px w-12 bg-linear-to-l from-transparent to-green-300"></div>
+          </div>
+
+          {/* Autore */}
+          <div className="flex items-center justify-center gap-4">
+            <div
+              className="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 shadow-md"
+              style={{ backgroundColor: '#00746b' }}
+            >
+              {r.nome.split(' ').map((p) => p[0]).join('').slice(0, 2).toUpperCase()}
+            </div>
+            <div className="text-left">
+              <p className="font-bold text-slate-900 text-lg tracking-tight">{r.nome}</p>
+              <p className="text-sm text-slate-500 tracking-wide">{r.data}</p>
+            </div>
           </div>
         </div>
 
         {/* Pallini navigazione */}
-        <div className="flex items-center justify-center gap-2 mt-8">
+        <div className="flex items-center justify-center gap-2 mt-12">
           {recensioni.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              className="h-1.5 rounded-full transition-all duration-300"
+              className="h-2 rounded-full transition-all duration-300 hover:opacity-70"
               style={{
-                width: i === idx ? '2rem' : '0.5rem',
+                width: i === idx ? '2.5rem' : '0.5rem',
                 backgroundColor: i === idx ? '#00746b' : '#cbd5e1',
               }}
+              aria-label={`Vai alla recensione ${i + 1}`}
             />
           ))}
         </div>
 
-        {/* Link Google */}
-        <div className="text-center mt-8">
-          <a
+        {/* Link recensione */}
+        <div className="text-center mt-12">
+          <DirectionsLink
             href="https://www.google.com/maps/search/Farmacia+Resta+Opera"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-semibold hover:gap-3 transition-all text-lg"
-            style={{ color: '#00746b' }}
-          >
-            Lascia una recensione su Google
-            <ArrowRight className="w-5 h-5" />
-          </a>
+            label="Lascia una recensione"
+            icon={Star}
+            external
+            className="text-lg"
+          />
         </div>
       </div>
     </section>

@@ -13,14 +13,13 @@ export default function MapSection() {
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionIntro
-          title="Dove Siamo"
+          eyebrow="Dove Siamo"
+          title="Ti aspettiamo qui"
+          highlight="qui"
+          handwritten
           subtitle="Passa a trovarci in farmacia"
-          className="mb-4"
+          className="mb-12"
         />
-
-        <div className="mb-8 text-center">
-          <DirectionsLink destination={contatti.indirizzo} />
-        </div>
 
         <div className="rounded-xl overflow-hidden shadow-lg">
           {/* Google Maps Embed */}
@@ -34,6 +33,10 @@ export default function MapSection() {
             referrerPolicy="no-referrer-when-downgrade"
             title="Mappa Farmacia Resta"
           />
+        </div>
+
+        <div className="mt-8 text-center">
+          <DirectionsLink destination={contatti.indirizzo} className="text-lg" />
         </div>
       </div>
     </section>
