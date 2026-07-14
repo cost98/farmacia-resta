@@ -37,9 +37,8 @@ export async function GET(request: NextRequest) {
     // STEP 1: Rinnova il token Instagram
     console.log('🔄 Refreshing Instagram token...');
     
-    const refreshUrl = new URL('https://graph.facebook.com/v18.0/oauth/access_token');
-    refreshUrl.searchParams.set('grant_type', 'ig_exchange_token');
-    refreshUrl.searchParams.set('client_secret', appSecret);
+    const refreshUrl = new URL('https://graph.instagram.com/refresh_access_token');
+    refreshUrl.searchParams.set('grant_type', 'ig_refresh_token');
     refreshUrl.searchParams.set('access_token', currentToken);
 
     const response = await fetch(refreshUrl.toString());
