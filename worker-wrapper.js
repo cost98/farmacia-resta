@@ -16,12 +16,12 @@ export default {
     console.log('🔄 Cron triggered - Refreshing Instagram token...');
     
     try {
-      // Chiama l'endpoint di refresh
+      // Chiama l'endpoint di refresh con autenticazione
       const response = await fetch('https://farmacia-resta.costdev2022.workers.dev/api/instagram/refresh', {
         method: 'GET',
         headers: {
+          'Authorization': `Bearer ${env.CRON_SECRET}`,
           'User-Agent': 'Cloudflare-Worker-Cron',
-          'cf-cron': 'true',
         },
       });
 
