@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Instagram, ShoppingBag, Stethoscope } from 'lucide-react';
+import { ArrowUpRight, Instagram, ShoppingBag, Stethoscope, type LucideIcon } from 'lucide-react';
 import SectionIntro from '@/components/ui/SectionIntro';
 import { social } from '@/lib/data/contatti';
 
@@ -7,7 +7,7 @@ type CtaBox = {
   id: string;
   title: string;
   description: string;
-  icon: React.ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
+  icon: LucideIcon;
   href: string;
   ctaLabel: string;
   external?: boolean;

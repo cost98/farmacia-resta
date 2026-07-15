@@ -1,0 +1,8 @@
+#:schema node_modules/@cloudflare/workers-types/experimental/index.d.ts
+
+name = "farmacia-resta"
+compatibility_date = "2024-01-01"
+main = ".open-next/worker.js"
+
+# Le variabili d'ambiente vanno configurate tramite wrangler secrets o dashboard Cloudflare
+[vars]
