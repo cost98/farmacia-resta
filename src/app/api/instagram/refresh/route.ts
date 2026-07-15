@@ -1,20 +1,97 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// ⚠️ DISABILITATO PER CLOUDFLARE PAGES
-// Questa route auto-refresh è specifica per Vercel e usa Vercel API
-// Su Cloudflare Pages serve un Cloudflare Worker separato con Scheduled Events
-// 
-// TODO: Per riattivare su Cloudflare:
-// 1. Creare un Cloudflare Worker con Scheduled Event
-// 2. Usare Cloudflare API invece di Vercel API per aggiornare env vars
-// 3. Configurare il trigger cron nel Cloudflare Dashboard
+// Auto-refresh Instagram token using Cloudflare KV
+// Called automatically by Cloudflare Cron Trigger every 50 days
 
 export async function GET(request: NextRequest) {
-  return NextResponse.json({
-    error: 'Auto-refresh disabled',
-    message: 'Instagram token auto-refresh is currently disabled on Cloudflare Pages. Please refresh token manually or configure Cloudflare Workers.',
-    howToRefreshManually: 'Visit https://developers.facebook.com/apps/YOUR_APP_ID/instagram-basic-display/basic-display/ to refresh token',
-  }, { status: 503 });
+  // Verify request is from Cloudflare Cron or has valid secret
+  const authHeader = request.headers.get('authorization');
+  const cronSecret = process.env.CRON_SECRET;
+  const isCronTrigger = request.headers.get('cf-cron');
+
+  if (!isCronTrigger && (!cronSecret || authHeader !== `Bearer ${cronSecret}`)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    // Get current token (from KV or env)
+    let currentToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+    
+    try {
+      const kvNamespace = (globalThis as any).INSTAGRAM_KV;
+      if (kvNamespace && typeof kvNamespace.get === 'function') {
+        const kvToken = await kvNamespace.get('access_token');
+        if (kvToken) currentToken = kvToken;
+      }
+    } catch (e) {
+      // KV not available - ignore
+    }
+
+    if (!currentToken) {
+      return NextResponse.json(
+        { error: 'No Instagram token found' },
+        { status: 500 }
+      );
+    }
+
+    // Refresh token with Instagram API
+    console.log('🔄 Refreshing Instagram token...');
+    
+    const refreshUrl = new URL('https://graph.instagram.com/refresh_access_token');
+    refreshUrl.searchParams.set('grant_type', 'ig_refresh_token');
+    refreshUrl.searchParams.set('access_token', currentToken);
+
+    const response = await fetch(refreshUrl.toString());
+    
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('❌ Token refresh failed:', error);
+      return NextResponse.json(
+        { error: 'Failed to refresh token', details: error },
+        { status: response.status }
+      );
+    }
+
+    const data = await response.json();
+    const newToken = data.access_token;
+    const expiresIn = data.expires_in;
+
+    console.log('✅ Token refreshed successfully');
+    console.log(`⏰ New token expires in ${Math.floor(expiresIn / 86400)} days`);
+
+    // Save new token to KV
+    try {
+      const kvNamespace = (globalThis as any).INSTAGRAM_KV;
+      if (kvNamespace && typeof kvNamespace.put === 'function') {
+        await kvNamespace.put('access_token', newToken, {
+          expirationTtl: expiresIn, // Auto-expire with token
+        });
+        await kvNamespace.put('last_refresh', new Date().toISOString());
+        console.log('✅ Token saved to KV');
+      } else {
+        console.warn('⚠️ KV not available - token not persisted');
+      }
+    } catch (e) {
+      console.error('Error saving to KV:', e);
+      return NextResponse.json(
+        { error: 'Failed to save token', details: String(e) },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: 'Token refreshed successfully',
+      expiresInDays: Math.floor(expiresIn / 86400),
+      nextRefresh: '50 days',
+    });
+  } catch (error) {
+    console.error('❌ Refresh error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error', details: String(error) },
+      { status: 500 }
+    );
+  }
 }
 
 /* CODICE ORIGINALE VERCEL - COMMENTATO PER CLOUDFLARE PAGES

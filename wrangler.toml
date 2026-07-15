@@ -9,5 +9,14 @@ main = ".open-next/worker.js"
 directory = ".open-next/assets"
 binding = "ASSETS"
 
+# KV namespace for storing Instagram token
+[[kv_namespaces]]
+binding = "INSTAGRAM_KV"
+id = "3acf2413da2745c69060e51a7cc2bb93"
+
+# Cron trigger - refresh Instagram token every 50 days
+[triggers]
+crons = ["0 0 */50 * *"]
+
 # Le variabili d'ambiente vanno configurate tramite wrangler secrets o dashboard Cloudflare
 [vars]
