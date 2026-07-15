@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developers.cloudflare.com/pages/platform/build-configuration",
+  "build": {
+    "command": "npm run pages:build",
+    "cwd": ".",
+    "watch_paths": [
+      "src/**/*.{ts,tsx}",
+      "public/**"
+    ]
+  }
+}
