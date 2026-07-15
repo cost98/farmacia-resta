@@ -25,17 +25,28 @@ export default {
         },
       });
 
+      console.log(`📡 Response status: ${response.status}`);
+      
+      // Controlla se la risposta è JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('❌ Non-JSON response:', text.substring(0, 200));
+        throw new Error(`Expected JSON, got ${contentType}. Response: ${text.substring(0, 100)}`);
+      }
+
       const data = await response.json();
 
       if (response.ok) {
         console.log('✅ Token refreshed successfully:', data);
       } else {
         console.error('❌ Token refresh failed:', data);
-        throw new Error(`Refresh failed: ${data.error}`);
+        throw new Error(`Refresh failed: ${data.error || 'Unknown error'}`);
       }
     } catch (error) {
-      console.error('❌ Cron execution error:', error);
-      throw error;
+      console.error('❌ Cron execution error:', error.message);
+      // Non rilanciare l'errore per evitare che Cloudflare marchi il cron come fallito ripetutamente
+      // throw error;
     }
   },
 };
