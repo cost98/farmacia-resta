@@ -3,7 +3,7 @@
 name = "farmacia-resta"
 compatibility_date = "2026-07-15"
 compatibility_flags = ["nodejs_compat"]
-main = ".open-next/worker.js"
+main = "worker-wrapper.js"
 
 [assets]
 directory = ".open-next/assets"
@@ -13,6 +13,10 @@ binding = "ASSETS"
 [[kv_namespaces]]
 binding = "INSTAGRAM_KV"
 id = "3acf2413da2745c69060e51a7cc2bb93"
+
+# Cron trigger - refresh Instagram token every 15 days
+[triggers]
+crons = ["0 0 1,15 * *"]
 
 # Le variabili d'ambiente vanno configurate tramite wrangler secrets o dashboard Cloudflare
 [vars]
