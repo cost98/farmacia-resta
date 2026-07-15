@@ -1,5 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// ⚠️ DISABILITATO PER CLOUDFLARE PAGES
+// Questa route auto-refresh è specifica per Vercel e usa Vercel API
+// Su Cloudflare Pages serve un Cloudflare Worker separato con Scheduled Events
+// 
+// TODO: Per riattivare su Cloudflare:
+// 1. Creare un Cloudflare Worker con Scheduled Event
+// 2. Usare Cloudflare API invece di Vercel API per aggiornare env vars
+// 3. Configurare il trigger cron nel Cloudflare Dashboard
+
+export async function GET(request: NextRequest) {
+  return NextResponse.json({
+    error: 'Auto-refresh disabled',
+    message: 'Instagram token auto-refresh is currently disabled on Cloudflare Pages. Please refresh token manually or configure Cloudflare Workers.',
+    howToRefreshManually: 'Visit https://developers.facebook.com/apps/YOUR_APP_ID/instagram-basic-display/basic-display/ to refresh token',
+  }, { status: 503 });
+}
+
+/* CODICE ORIGINALE VERCEL - COMMENTATO PER CLOUDFLARE PAGES
+
 // Questa route viene chiamata automaticamente da Vercel Cron ogni 50 giorni
 // Rinnova il token Instagram e aggiorna automaticamente le Environment Variables su Vercel
 
@@ -111,7 +130,7 @@ export async function GET(request: NextRequest) {
       },
       body: JSON.stringify({
         value: newToken,
-        target: ['production', 'preview', 'development'],
+        target: ['production', 'preview'], // Solo production e preview (development usa .env.local)
       }),
     });
 
@@ -172,3 +191,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+*/

@@ -4,7 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
-import { Analytics } from "@vercel/analytics/react";
+// CLOUDFLARE: Analytics disabilitato (funziona solo su Vercel)
+// import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,7 +44,8 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
         <Footer />
         <FloatingWhatsApp />
-        <Analytics />
+        {/* CLOUDFLARE: Analytics disabilitato (funziona solo su Vercel) */}
+        {/* <Analytics /> */}
       </body>
     </html>
   );
