@@ -16,37 +16,68 @@ export default {
     console.log('🔄 Cron triggered - Refreshing Instagram token...');
     
     try {
-      // Chiama l'endpoint di refresh con autenticazione
-      const response = await fetch('https://farmacia-resta.costdev2022.workers.dev/api/instagram/refresh', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${env.CRON_SECRET}`,
-          'User-Agent': 'Cloudflare-Worker-Cron',
-        },
-      });
-
-      console.log(`📡 Response status: ${response.status}`);
+      // Get current token from KV or env
+      let currentToken = env.INSTAGRAM_ACCESS_TOKEN;
       
-      // Controlla se la risposta è JSON
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        const text = await response.text();
-        console.error('❌ Non-JSON response:', text.substring(0, 200));
-        throw new Error(`Expected JSON, got ${contentType}. Response: ${text.substring(0, 100)}`);
+      if (env.INSTAGRAM_KV) {
+        try {
+          const kvToken = await env.INSTAGRAM_KV.get('access_token');
+          if (kvToken) {
+            currentToken = kvToken;
+            console.log('📦 Using token from KV');
+          }
+        } catch (e) {
+          console.warn('⚠️ Failed to read from KV, using env token:', e.message);
+        }
       }
 
+      if (!currentToken) {
+        console.error('❌ No Instagram token available');
+        return;
+      }
+
+      const appId = env.INSTAGRAM_APP_ID;
+      const appSecret = env.INSTAGRAM_APP_SECRET;
+
+      if (!appId || !appSecret) {
+        console.error('❌ Missing INSTAGRAM_APP_ID or INSTAGRAM_APP_SECRET');
+        return;
+      }
+
+      // Call Instagram API to refresh token
+      // Docs: https://developers.facebook.com/docs/instagram-basic-display-api/guides/long-lived-access-tokens
+      const refreshUrl = new URL('https://graph.instagram.com/refresh_access_token');
+      refreshUrl.searchParams.set('grant_type', 'ig_refresh_token');
+      refreshUrl.searchParams.set('access_token', currentToken);
+      // Some implementations also require these:
+      // refreshUrl.searchParams.set('client_id', appId);
+      // refreshUrl.searchParams.set('client_secret', appSecret);
+      
+      console.log('📡 Calling Instagram refresh API...');
+      
+      const response = await fetch(refreshUrl);
       const data = await response.json();
 
-      if (response.ok) {
-        console.log('✅ Token refreshed successfully:', data);
+      if (!response.ok) {
+        console.error('❌ Instagram API error:', data);
+        throw new Error(`Instagram API failed: ${data.error?.message || 'Unknown error'}`);
+      }
+
+      const newToken = data.access_token;
+      const expiresIn = data.expires_in || 5184000; // 60 days default
+
+      // Save to KV with expiration
+      if (env.INSTAGRAM_KV) {
+        await env.INSTAGRAM_KV.put('access_token', newToken, {
+          expirationTtl: expiresIn,
+        });
+        await env.INSTAGRAM_KV.put('last_refresh', new Date().toISOString());
+        console.log(`✅ Token refreshed and saved to KV (expires in ${expiresIn}s)`);
       } else {
-        console.error('❌ Token refresh failed:', data);
-        throw new Error(`Refresh failed: ${data.error || 'Unknown error'}`);
+        console.warn('⚠️ KV not available, token refreshed but not saved');
       }
     } catch (error) {
       console.error('❌ Cron execution error:', error.message);
-      // Non rilanciare l'errore per evitare che Cloudflare marchi il cron come fallito ripetutamente
-      // throw error;
     }
   },
 };
