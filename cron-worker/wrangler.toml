@@ -1,0 +1,10 @@
+name = "farmacia-resta-cron"
+main = "src/index.js"
+compatibility_date = "2026-07-15"
+
+# Cron trigger - refresh Instagram token every 15 days
+[triggers]
+crons = ["0 0 1,15 * *"]
+
+[vars]
+TARGET_URL = "https://farmacia-resta.costdev2022.workers.dev/api/instagram/refresh"
